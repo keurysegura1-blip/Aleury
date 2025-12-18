@@ -1,5 +1,6 @@
 import React from 'react';
-import { Facebook, Twitter, Instagram, Youtube, Twitch } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Facebook, Instagram, Youtube, Twitch } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
@@ -26,11 +27,45 @@ const Footer: React.FC = () => {
         
         <div className="w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-gray-800 to-transparent mb-8" />
         
-        <p className="text-gray-600 text-xs">
-          © {new Date().getFullYear()} BLACK RONINS CLAN. Todos los derechos reservados.
-          <br />
-          Diseñado para la élite de Free Fire.
-        </p>
+        <div className="text-center mb-12">
+          <p className="text-gray-600 text-xs mb-2">
+            © {new Date().getFullYear()} BLACK RONINS CLAN. Todos los derechos reservados.
+          </p>
+          <p className="text-gray-700 text-[10px] uppercase tracking-[0.2em]">
+            Diseñado para la élite de Free Fire.
+          </p>
+        </div>
+
+        {/* Garena Logo Animation at the very bottom */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.8, y: 20 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="flex flex-col items-center"
+        >
+          <div className="text-[10px] font-cyber text-gray-600 mb-4 tracking-[0.5em] uppercase">
+            Official Partner Content
+          </div>
+          <div className="relative group">
+            {/* Glow Effect Background */}
+            <div className="absolute -inset-4 bg-red-600/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+            
+            <img 
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Garena_logo.svg/1200px-Garena_logo.svg.png" 
+              alt="Garena Logo" 
+              className="h-12 md:h-16 w-auto grayscale brightness-150 contrast-125 hover:grayscale-0 transition-all duration-500 relative z-10"
+            />
+            
+            {/* Animated Line under logo */}
+            <motion.div 
+              initial={{ width: 0 }}
+              whileInView={{ width: "100%" }}
+              transition={{ delay: 0.5, duration: 1 }}
+              className="h-[1px] bg-red-600 mt-2 shadow-[0_0_8px_rgba(239,68,68,0.8)]"
+            />
+          </div>
+        </motion.div>
       </div>
     </footer>
   );
